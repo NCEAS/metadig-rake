@@ -23,17 +23,36 @@ check_text_file_format <- function(path, delimiter, header_lines){
   }
 
   if (header_lines == 1){
-    data <- utils::read.table(path, sep = delimiter, header = TRUE)
+
+    df <- tryCatch(utils::read.table(path, sep = delimiter, header = TRUE),
+                   error = function(err){
+                       return(NULL)
+                   }
+          )
+
   } else if (header_lines > 1){
-    data <- utils::read.table(path, sep = delimiter, header = TRUE, skip = header_lines - 1)
+
+    df <- tryCatch(utils::read.table(path, sep = delimiter, header = TRUE, skip = header_lines - 1),
+                   error = function(err){
+                       return(NULL)
+                   }
+           )
+
   } else if (header_lines == 0){
-    data <- utils::read.table(path, sep = delimiter, header = FALSE)
+
+    df <- tryCatch(utils::read.table(path, sep = delimiter, header = FALSE),
+                   error = function(err){
+                       return(NULL)
+                   }
+           )
+
   }
 
-  if (nrow(data) > 0 & inherits(data, "data.frame")){
-    return(TRUE)
-  } else {
+
+  if (is.null(df)) {
     return(FALSE)
+  } else if (nrow(df) > 0 & inherits(df, "data.frame")){
+    return(TRUE)
   }
 
 }
