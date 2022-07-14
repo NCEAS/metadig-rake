@@ -3,14 +3,16 @@ Type: Package
 Title: Data quality utilites for metadig
 Version: 0.0.999
 Authors@R: c(
-  person("Jeanette", "Clark", email = "jones@nceas.ucsb.edu", role = "cre"),
-  person("Erika", "Egg"", email = "egg@ucsb.edu", role = "aut")
-  )
-Description: Functions that perform data checks for the metadig quality engine
+    person("Jeanette", "Clark", email = "jones@nceas.ucsb.edu", role = "cre"),
+    person("Erika", "Egg", email = "egg@ucsb.edu", role = "aut")
+    )
+Description: Functions that perform data checks for the metadig quality engine.
 License: Apache License (== 2.0)
 BugReports: https://github.com/NCEAS/metadig-rake/issues
 Encoding: UTF-8
 LazyData: true
+Imports:
+    utils
 Suggests:
     testthat (>= 3.0.0)
 Roxygen: list(markdown = TRUE)
