@@ -10,36 +10,35 @@
   library(metadigRake)
   library(metadig)
 
+  result <- list()
   for (i in seq_along(names)){
 
-      if (!(format[i] %in% c("text/tsv", "text/csv", "text/plain"))){
-          save_output(paste0("Skipped checking ", names[i], " because it wasn't in the list of supported formats."))
-      } else {
-          path <- tryCatch({
-              mdq_get(url, FALSE)
-          },
-          error = function(e) {
-              e
-          }
+    path <- tryCatch({
+      mdq_get(url[i])
+    },
+    error = function(e) {
+      e
+    })
 
-          if (inherits(path, "error")) {
-              save_output(paste0("Something went wrong when trying to download ", names[i]))
-              next
-          }
+    if (inherits(path, "error")) {
+      result[[i]] <- list(status = "ERROR", output = paste("Something went wrong when trying to download ", names[i]))
+      next
+    }
 
-          if (textFormatsPresent & file.exists(fileName)){
-              status <- check_text_file_format(path, fieldDelimiter[i], headerLines[i])
+    if (textFormatPresent[i]){
+      status <- check_text_file_format(path, fieldDelimiter[i], headerLines[i])
 
-              if !(status){
-                  save_output(paste0(names[i], "is not formatted correctly"))
-              } else if (status){
-                  success()
-              }
-          }
+      if (!status){
+        save_output(paste(names[i], "is not formatted correctly"))
+      } else if (status){
+        result[[i]] <- list(status = "SUCCESS")
       }
-
+    } else {
+        result[[i]] <- list(status = "ERROR", output = paste(names[i], "does not appear to be documented as a text format."))
+        next
+    }
   }
-
+  mdq_result <- lapply(result, function(x) list(status=x$status, output= list(value=x$output)))
 
   ]]></code>
   <selector>
@@ -51,11 +50,11 @@
     </subSelector>
   </selector>
   <selector>
-    <name>formats</name>
+    <name>textFormatPresent</name>
     <xpath>/eml/dataset/*[self::dataTable|self::otherEntity]</xpath>
     <subSelector>
       <name>...</name>
-      <xpath>.//formatName</xpath>
+      <xpath>boolean(.//textFormat)</xpath>
     </subSelector>
   </selector>
   <selector>
@@ -82,7 +81,6 @@
         <xpath>./physical/dataFormat/textFormat/numHeaderLines</xpath>
     </subSelector>
   </selector>
-  <selector>
   <dialect>
     <name>eml</name>
     <xpath>boolean(/*[local-name() = 'eml'])</xpath>
