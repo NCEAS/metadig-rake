@@ -22,6 +22,11 @@ check_text_file_format <- function(path, delimiter, header_lines){
     header_lines = as.integer(header_lines)
   }
 
+  # assume that if no header is specified, there is one
+  if (is.na(header_lines) | is.null(header_lines)){
+    header_lines <- 1
+  }
+
   if (header_lines == 1){
 
     df <- tryCatch(utils::read.table(path, sep = delimiter, header = TRUE),
