@@ -26,7 +26,7 @@
   }
 
   if (!textFormatPresent[i]){
-    result[[i]] <- list(status = "ERROR", output = paste(names[i], "does not appear to be documented as a text format."))
+    result[[i]] <- list(status = "SUCCESS", output = paste(names[i], "does not appear to be documented as a text format."))
     next
   }
 
