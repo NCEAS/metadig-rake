@@ -1,4 +1,4 @@
 library(testthat)
-library(metadigRake)
+library(metarake)
 
-test_check("metadigRake")
+test_check("metarake")

@@ -1,4 +1,4 @@
-Package: metadigRake
+Package: metarake
 Type: Package
 Title: Data quality utilites for metadig
 Version: 0.0.999
