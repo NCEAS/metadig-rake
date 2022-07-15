@@ -10,35 +10,53 @@
   library(metadigRake)
   library(metadig)
 
-  result <- list()
-  for (i in seq_along(names)){
+ result <- list()
+ for (i in seq_along(names)){
 
-    path <- tryCatch({
-      mdq_get(url[i])
-    },
-    error = function(e) {
-      e
-    })
+  path <- tryCatch({
+    mdq_get(url[i])
+  },
+  error = function(e) {
+    e
+  })
 
-    if (inherits(path, "error")) {
-      result[[i]] <- list(status = "ERROR", output = paste("Something went wrong when trying to download ", names[i]))
-      next
-    }
-
-    if (textFormatPresent[i]){
-      status <- check_text_file_format(path, fieldDelimiter[i], headerLines[i])
-
-      if (!status){
-        save_output(paste(names[i], "is not formatted correctly"))
-      } else if (status){
-        result[[i]] <- list(status = "SUCCESS")
-      }
-    } else {
-        result[[i]] <- list(status = "ERROR", output = paste(names[i], "does not appear to be documented as a text format."))
-        next
-    }
+  if (inherits(path, "error")) {
+    result[[i]] <- list(status = "ERROR", output = paste("Something went wrong when trying to download ", names[i]))
+    next
   }
-  mdq_result <- lapply(result, function(x) list(status=x$status, output= list(value=x$output)))
+
+  if (!textFormatPresent[i]){
+    result[[i]] <- list(status = "ERROR", output = paste(names[i], "does not appear to be documented as a text format."))
+    next
+  }
+
+  status <- check_text_file_format(path, fieldDelimiter[i], headerLines[i])
+
+  if (!status){
+      result[[i]] <- list(status = "FAILURE", output = paste(names[i], "is formatted incorrectly."))
+    } else if (status){
+      result[[i]] <- list(status = "SUCCESS", output = paste(names[i], "is formatted correctly."))
+  }
+}
+
+  statuses <- unlist(lapply(result, function(x){x$status}))
+  outputs <- unlist(lapply(result, function(x){x$output}))
+
+  failures <- length(which(statuses == "FAILURE"))
+  errors <- length(which(statuses == "ERROR"))
+  successes <- length(which(statuses == "SUCCESS"))
+
+  output_string <- paste(successes, "file(s) successfully parsed.",
+                       failures, "file(s) failed to parse.",
+                       errors, "files(s) errored on download, or are not text files.")
+
+  if (any(statuses == "SUCCESS")){
+      mdq_result <- list(output = output_string, status = "SUCCESS")
+  } else if (all(statuses == "ERROR")){
+      mdq_result <- list(output = output_string, status = "ERROR")
+  } else {
+      mdq_result <- list(output = output_string, status = "FAILURE")
+  }
 
   ]]></code>
   <selector>
