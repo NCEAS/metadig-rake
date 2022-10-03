@@ -1,6 +1,7 @@
-#' Example function
+#' Read tabular data from a delimited text file
 #'
-#' Here is some documentation for this example function.
+#' This function takes a path, delimiter, and header lines to read in a file
+#' returning the data as a data.frame if it is succesfull, and NULL if not.
 #'
 #' @param path (char) A path to a data file
 #' @param delimiter (char) Record delimter to be used to parse the file
@@ -13,7 +14,7 @@
 #' @examples
 #' path <- system.file("extdata/test.csv", package = "metadigRake")
 #' check_text_file_format(path, ",", 1)
-check_text_file_format <- function(path, delimiter, header_lines){
+read_text_file <- function(path, delimiter, header_lines){
 
   stopifnot(inherits(path, "character"))
   stopifnot(inherits(delimiter, "character"))
@@ -31,33 +32,29 @@ check_text_file_format <- function(path, delimiter, header_lines){
 
     df <- tryCatch(utils::read.table(path, sep = delimiter, header = TRUE),
                    error = function(err){
-                       return(NULL)
+                     return(NULL)
                    }
-          )
+    )
 
   } else if (header_lines > 1){
 
     df <- tryCatch(utils::read.table(path, sep = delimiter, header = TRUE, skip = header_lines - 1),
                    error = function(err){
-                       return(NULL)
+                     return(NULL)
                    }
-           )
+    )
 
   } else if (header_lines == 0){
 
     df <- tryCatch(utils::read.table(path, sep = delimiter, header = FALSE),
                    error = function(err){
-                       return(NULL)
+                     return(NULL)
                    }
-           )
+    )
 
   }
 
 
-  if (is.null(df)) {
-    return(FALSE)
-  } else if (nrow(df) > 0 & inherits(df, "data.frame")){
-    return(TRUE)
-  }
+  return(df)
 
 }
