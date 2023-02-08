@@ -31,7 +31,7 @@ checkFile <- system.file("extdata/text_format_valid-check.xml", package = "metad
 results <- runCheck(checkFile, metadataFile)
 ```
 
-`check_text_file_format()` can also be run standalone on any given file.
+`check_text_file_parsable()` can also be run standalone on any given file.
 
 ```
 library(metarake)
@@ -40,6 +40,6 @@ data <- "'x';'y'\r1;2\r3;4"
 file <- tempfile(pattern = "file", tmpdir = tempdir(), fileext = ".txt")
 writeLines(data, file)
 
-check_text_file_format(file, delimiter = ";", header_lines = 1)
+check_text_file_parsable(file, delimiter = ";", header_lines = 1)
 ```
 
