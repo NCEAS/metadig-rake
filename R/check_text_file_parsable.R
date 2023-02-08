@@ -1,4 +1,4 @@
-#' Check text file format
+#' Check if a text file is parsable
 #'
 #' This is a wrapper around the helper `read_text_file` which returns TRUE if
 #' the file is read in successfully and NULL if not.
@@ -13,8 +13,8 @@
 #'
 #' @examples
 #' path <- system.file("extdata/test.csv", package = "metadigRake")
-#' check_text_file_format(path, ",", 1)
-check_text_file_format <- function(path, delimiter, header_lines){
+#' check_text_file_parsable(path, ",", 1)
+check_text_file_parsable <- function(path, delimiter, header_lines){
 
   df <- read_text_file(path, delimiter, header_lines)
 

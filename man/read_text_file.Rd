@@ -4,7 +4,7 @@
 \alias{read_text_file}
 \title{Read tabular data from a delimited text file}
 \usage{
-read_text_file(path, delimiter, header_lines)
+read_text_file(path, delimiter, header_lines, ...)
 }
 \arguments{
 \item{path}{(char) A path to a data file}
@@ -12,15 +12,17 @@ read_text_file(path, delimiter, header_lines)
 \item{delimiter}{(char) Record delimter to be used to parse the file}
 
 \item{header_lines}{Number of header lines in the file}
+
+\item{...}{other arguments to \code{read.table}}
 }
 \value{
-(boolean) Whether or not the file could be parsed
+(df) A parsed data.frame
 }
 \description{
 This function takes a path, delimiter, and header lines to read in a file
-returning the data as a data.frame if it is succesfull, and NULL if not.
+returning the data as a data.frame if it is successful, and NULL if not.
 }
 \examples{
 path <- system.file("extdata/test.csv", package = "metadigRake")
-check_text_file_format(path, ",", 1)
+read_text_file(path, ",", 1)
 }

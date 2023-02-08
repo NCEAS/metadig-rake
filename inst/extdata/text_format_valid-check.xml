@@ -30,7 +30,7 @@
     next
   }
 
-  status <- check_text_file_format(path, fieldDelimiter[i], headerLines[i])
+  status <- check_text_file_parsable(path, fieldDelimiter[i], headerLines[i])
 
   if (!status){
       result[[i]] <- list(status = "FAILURE", output = paste(names[i], "is formatted incorrectly."))
@@ -65,14 +65,6 @@
     <subSelector>
       <name>...</name>
       <xpath>./entityName</xpath>
-    </subSelector>
-  </selector>
-  <selector>
-    <name>textFormatPresent</name>
-    <xpath>/eml/dataset/*[self::dataTable|self::otherEntity]</xpath>
-    <subSelector>
-      <name>...</name>
-      <xpath>boolean(.//textFormat)</xpath>
     </subSelector>
   </selector>
   <selector>
