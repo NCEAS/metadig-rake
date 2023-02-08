@@ -43,7 +43,7 @@ check_file_format_matches <- function(data_path, sys_path){
   }
 
   # get the MIME type and do a little string massaging
-  res <- system(paste("file --mime-type", tp), intern = TRUE)
+  res <- system2("file",c("--mime-type", tp), stdout = TRUE)
   res_s <- stringr::str_extract(res, ":(.)*")
   res_s <- gsub(": ", "" ,res_s)
 
