@@ -21,7 +21,7 @@ test_that("false is returned when formats do not match", {
   data_path <- "https://arcticdata.io/metacat/d1/mn/v2/object/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
 
   ts <- tempfile()
-  utils::download.file(sys_path, ts)
+  utils::download.file(sys_path, ts, ext = ".csv")
 
   x <- XML::xmlParseDoc(ts)
   sys <- new("SystemMetadata")
