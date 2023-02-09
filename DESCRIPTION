@@ -17,6 +17,7 @@ Imports:
     methods,
     mime,
     stringr,
+    tools,
     utils,
     XML
 Suggests:
