@@ -5,9 +5,9 @@ test_that("file formats match from path and from file", {
   expect_true(check_file_format_matches(data_path, sys_path))
 
   tp <- tempfile()
-  download.file(data_path, tp)
+  utils::download.file(data_path, tp)
   ts <- tempfile()
-  download.file(sys_path, ts)
+  utils::download.file(sys_path, ts)
 
   expect_true(check_file_format_matches(tp, ts))
 
@@ -21,7 +21,7 @@ test_that("false is returned when formats do not match", {
   data_path <- "https://arcticdata.io/metacat/d1/mn/v2/object/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
 
   ts <- tempfile()
-  download.file(sys_path, ts)
+  utils::download.file(sys_path, ts)
 
   x <- XML::xmlParseDoc(ts)
   sys <- new("SystemMetadata")

@@ -15,6 +15,7 @@ Imports:
     dataone,
     datapack,
     methods,
+    mime,
     stringr,
     utils,
     XML
