@@ -66,7 +66,7 @@ check_file_format_matches <- function(data_path, sys_path){
   i <- which(formats$MediaType == res_s)
   f_format <- formats$ID[i]
 
-  print(formatId)
+  print(sys@formatId)
   print(f_format)
   # check if sysmeta matches formatID
   if (sys@formatId != f_format) {
