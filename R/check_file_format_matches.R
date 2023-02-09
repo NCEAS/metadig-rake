@@ -48,7 +48,9 @@ check_file_format_matches <- function(data_path, sys_path){
     res_s <- stringr::str_extract(res, ":(.)*")
     res_s <- gsub(": ", "" ,res_s)
   } else {
+    print(.Platform$OS.type)
     res_s <- mime::guess_type(tp)
+    print(res_s)
   }
 
 
