@@ -10,7 +10,7 @@
 #'
 #' @return (boolean) Whether or not the file type matches the formatId
 #'
-#' @import dataone
+#' @import datapack
 #' @export
 #'
 #' @examples
@@ -31,7 +31,6 @@ check_file_format_matches <- function(data_path, sys_path){
   x <- XML::xmlParseDoc(ts)
   sys <- methods::new("SystemMetadata")
   sys <- datapack::parseSystemMetadata(sys, XML::xmlRoot(x))
-  print(sys@fileName)
 
   # if it looks like a URL download the file
   if (grepl("http", data_path)){

@@ -27,7 +27,7 @@ test_that("false is returned when formats do not match", {
   sys <- new("SystemMetadata")
   sys <- datapack::parseSystemMetadata(sys, XML::xmlRoot(x))
   sys@formatId <- "text/plain"
-  doc <- datapack::serializeSystemMetadata(sys)
+  doc <- datapack::serializeSystemMetadata(sys, version = "v2")
   fs <- tempfile()
   writeLines(doc, fs)
 
