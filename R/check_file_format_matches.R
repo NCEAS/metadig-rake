@@ -21,7 +21,7 @@ check_file_format_matches <- function(data_path, sys_path){
   # if it looks like a URL download the file
   if (grepl("http", data_path)){
     tp <- tempfile()
-    download.file(data_path, tp, quiet = TRUE)
+    utils::download.file(data_path, tp, quiet = TRUE)
   } else {
     tp <- data_path
   }
@@ -42,10 +42,15 @@ check_file_format_matches <- function(data_path, sys_path){
     stop("Could not find data file.")
   }
 
-  # get the MIME type and do a little string massaging
-  res <- system2("file",c("--mime-type", tp), stdout = TRUE)
-  res_s <- stringr::str_extract(res, ":(.)*")
-  res_s <- gsub(": ", "" ,res_s)
+  if (.Platform$OS.type %in% c("unix", "linux")){
+    # get the MIME type and do a little string massaging
+    res <- system2("file",c("--mime-type", tp), stdout = TRUE)
+    res_s <- stringr::str_extract(res, ":(.)*")
+    res_s <- gsub(": ", "" ,res_s)
+  } else {
+    res_s <- mime::guess_type(tp)
+  }
+
 
   # get the corresponding dataone formatID from the MIME type
   formats <- dataone::listFormats(dataone::CNode("PROD"))
