@@ -16,7 +16,7 @@ check_file_format_matches(data_path, sys_path)
 }
 \description{
 This checks whether a file's format matches documentation
-in the system metadata. The output of \verb{file filename.ext} (bash)
+in a file's DataONE system metadata. The output of \verb{file filename.ext} (bash)
 is checked against the \href{https://cn.dataone.org/cn/v2/formats}{formatId}
 in the system metadata for that file.
 }

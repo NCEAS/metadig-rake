@@ -1,7 +1,7 @@
 #' Check file format
 #'
 #' This checks whether a file's format matches documentation
-#' in the system metadata. The output of `file filename.ext` (bash)
+#' in a file's DataONE system metadata. The output of `file filename.ext` (bash)
 #' is checked against the [formatId](https://cn.dataone.org/cn/v2/formats)
 #' in the system metadata for that file.
 #'
