@@ -35,7 +35,8 @@ check_file_format_matches <- function(data_path, sys_path){
   # if it looks like a URL download the file
   if (grepl("http", data_path)){
     ext <- tools::file_ext(sys@fileName)
-    tp <- tempfile(fileext = paste0(".",ext))
+    tp <- tempfile(fileext = paste0(".", ext))
+    print(tp)
     utils::download.file(data_path, tp, quiet = TRUE)
   } else {
     tp <- data_path
@@ -65,6 +66,8 @@ check_file_format_matches <- function(data_path, sys_path){
   i <- which(formats$MediaType == res_s)
   f_format <- formats$ID[i]
 
+  print(formatId)
+  print(f_format)
   # check if sysmeta matches formatID
   if (sys@formatId != f_format) {
     return(FALSE)
