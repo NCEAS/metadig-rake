@@ -1,5 +1,5 @@
 test_that("file formats match from path and from file", {
-
+  skip_on_cran()
   data_path <- "https://arcticdata.io/metacat/d1/mn/v2/object/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
   sys_path <- "https://arcticdata.io/metacat/d1/mn/v2/meta/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
   expect_true(check_file_format_matches(data_path, sys_path))
@@ -17,13 +17,10 @@ test_that("file formats match from path and from file", {
 
 test_that("false is returned when formats do not match", {
 
-  sys_path <- "https://arcticdata.io/metacat/d1/mn/v2/meta/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
-  data_path <- "https://arcticdata.io/metacat/d1/mn/v2/object/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
+  data_path <- system.file("extdata/test.csv", package = "metarake")
+  sys_path <- system.file("extdata/sysmeta.xml", package = "metarake")
 
-  ts <- tempfile()
-  utils::download.file(sys_path, ts)
-
-  x <- XML::xmlParseDoc(ts)
+  x <- XML::xmlParseDoc(sys_path)
   sys <- new("SystemMetadata")
   sys <- datapack::parseSystemMetadata(sys, XML::xmlRoot(x))
   sys@formatId <- "text/plain"
