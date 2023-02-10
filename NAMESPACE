@@ -3,5 +3,7 @@
 export(check_file_format_matches)
 export(check_text_file_parsable)
 export(get_data_pids)
+export(get_mn_endpoint)
+export(parse_system_metadata)
 export(read_text_file)
 import(datapack)

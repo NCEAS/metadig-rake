@@ -7,9 +7,9 @@
 check_file_format_matches(data_path, sys_path)
 }
 \arguments{
-\item{data_path}{(char) A path or URL to a data file}
+\item{data_path}{(char) A path to a data file}
 
-\item{sys_path}{(char) A path or URL to system metadata for the file}
+\item{sys_path}{(char) A path to system metadata for the file}
 }
 \value{
 (boolean) Whether or not the file type matches the formatId
