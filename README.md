@@ -26,7 +26,7 @@ library(metadig)
 metadataFile <- tempfile()
 download.file("https://arcticdata.io/metacat/d1/mn/v2/object/doi%3A10.18739%2FA2CJ87N0J", metadataFile)
 
-checkFile <- system.file("extdata/text_format_valid-check.xml", package = "metarake")
+checkFile <- system.file("extdata/checks/text_format_valid-check.xml", package = "metarake")
 
 results <- runCheck(checkFile, metadataFile)
 ```
