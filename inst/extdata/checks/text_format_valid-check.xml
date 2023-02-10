@@ -68,6 +68,14 @@
     </subSelector>
   </selector>
   <selector>
+    <name>textFormatPresent</name>
+    <xpath>/eml/dataset/*[self::dataTable|self::otherEntity]</xpath>
+    <subSelector>
+      <name>...</name>
+      <xpath>boolean(.//textFormat)</xpath>
+    </subSelector>
+  </selector>
+  <selector>
     <name>url</name>
     <xpath>/eml/dataset/*[self::dataTable|self::otherEntity]</xpath>
     <subSelector>
