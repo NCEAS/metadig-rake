@@ -14,8 +14,8 @@
 #' @export
 #'
 #' @examples
-#' data_path <- "https://arcticdata.io/metacat/d1/mn/v2/object/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
-#' sys_path <- "https://arcticdata.io/metacat/d1/mn/v2/meta/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
+#' data_path <- system.file("extdata/test.csv", package = "metarake")
+#' sys_path <- system.file("extdata/sysmeta.xml", package = "metarake")
 #' check_file_format_matches(data_path, sys_path)
 check_file_format_matches <- function(data_path, sys_path){
 
@@ -49,15 +49,7 @@ check_file_format_matches <- function(data_path, sys_path){
     stop("Could not find data file.")
   }
 
-  if (.Platform$OS.type %in% c("unix", "linux")){
-    # get the MIME type and do a little string massaging
-    res <- system2("file",c("--mime-type", tp), stdout = TRUE)
-    res_s <- stringr::str_extract(res, ":(.)*")
-    res_s <- gsub(": ", "" ,res_s)
-  } else {
-    # on windows it guesses by extension only
     res_s <- mime::guess_type(tp)
-  }
 
 
   # get the corresponding dataone formatID from the MIME type
