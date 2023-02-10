@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:systemMetadata xmlns:ns2="http://ns.dataone.org/service/types/v1" xmlns:ns3="http://ns.dataone.org/service/types/v2.0">
+    <serialVersion>0</serialVersion>
+    <identifier>local</identifier>
+    <formatId>text/csv</formatId>
+    <size>59</size>
+    <checksum algorithm="MD5">aa20dbd7ed2ac9f9c4bd82267e5d627a</checksum>
+    <submitter>CN=arctic-data-admins,DC=dataone,DC=org</submitter>
+    <rightsHolder>CN=arctic-data-admins,DC=dataone,DC=org</rightsHolder>
+    <accessPolicy>
+        <allow>
+            <subject>public</subject>
+            <permission>read</permission>
+        </allow>
+        <allow>
+            <subject>CN=arctic-data-admins,DC=dataone,DC=org</subject>
+            <permission>read</permission>
+            <permission>write</permission>
+            <permission>changePermission</permission>
+        </allow>
+    </accessPolicy>
+    <replicationPolicy replicationAllowed="false" numberReplicas="0"/>
+    <archived>false</archived>
+    <dateUploaded>2023-01-23T23:40:30.537+00:00</dateUploaded>
+    <dateSysMetadataModified>2023-02-01T16:59:17.685+00:00</dateSysMetadataModified>
+    <originMemberNode>urn:node:ARCTIC</originMemberNode>
+    <authoritativeMemberNode>urn:node:ARCTIC</authoritativeMemberNode>
+    <fileName>test.csv</fileName>
+</ns3:systemMetadata>
