@@ -30,13 +30,24 @@ check_file_format_matches <- function(data_path, sys_path){
   x <- XML::xmlParseDoc(sys_path)
   sys <- methods::new("SystemMetadata")
   sys <- datapack::parseSystemMetadata(sys, XML::xmlRoot(x))
+  ext <- tools::file_ext(sys@fileName)
 
   res_s <- mime::guess_type(data_path)
 
 
   # get the corresponding dataone formatID from the MIME type
   formats <- dataone::listFormats(dataone::CNode("PROD"))
-  i <- which(formats$MediaType == res_s)
+  i <- which(formats$MediaType == res_s & formats$Extension == ext)
+
+  if (length(i) > 1){
+    warning("Multiple DataONE formats match this file.")
+  }
+
+  if (length(i) == 0){
+    warning("No DataONE formats match this file.")
+    return(FALSE)
+  }
+
   f_format <- formats$ID[i]
 
   # check if sysmeta matches formatID
