@@ -7,7 +7,7 @@
   <level>REQUIRED</level>
   <environment>rscript</environment>
   <code><![CDATA[
-  library(metadigRake)
+  library(metarake)
   library(metadig)
 
  result <- list()

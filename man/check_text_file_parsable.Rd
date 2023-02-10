@@ -21,6 +21,6 @@ This is a wrapper around the helper \code{read_text_file} which returns TRUE if
 the file is read in successfully and NULL if not.
 }
 \examples{
-path <- system.file("extdata/test.csv", package = "metadigRake")
+path <- system.file("extdata/test.csv", package = "metarake")
 check_text_file_parsable(path, ",", 1)
 }

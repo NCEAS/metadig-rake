@@ -16,7 +16,6 @@ Imports:
     datapack,
     methods,
     mime,
-    stringr,
     tools,
     utils,
     XML

@@ -23,6 +23,6 @@ This function takes a path, delimiter, and header lines to read in a file
 returning the data as a data.frame if it is successful, and NULL if not.
 }
 \examples{
-path <- system.file("extdata/test.csv", package = "metadigRake")
+path <- system.file("extdata/test.csv", package = "metarake")
 read_text_file(path, ",", 1)
 }

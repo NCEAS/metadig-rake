@@ -11,7 +11,7 @@ MetaDIG rake, a cross-domain QA/QC library
 `metarake` is used alongside the `metadig` R package for running quality checks.
 
 ```
-devtools::install_github("NCEAS/metarake@develop")
+devtools::install_github("NCEAS/metadig-rake@develop")
 devtools::install_github("NCEAS/metadig-r")
 ```
 
@@ -26,7 +26,7 @@ library(metadig)
 metadataFile <- tempfile()
 download.file("https://arcticdata.io/metacat/d1/mn/v2/object/doi%3A10.18739%2FA2CJ87N0J", metadataFile)
 
-checkFile <- system.file("extdata/text_format_valid-check.xml", package = "metadigRake")
+checkFile <- system.file("extdata/text_format_valid-check.xml", package = "metarake")
 
 results <- runCheck(checkFile, metadataFile)
 ```

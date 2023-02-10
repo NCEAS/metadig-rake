@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' path <- system.file("extdata/test.csv", package = "metadigRake")
+#' path <- system.file("extdata/test.csv", package = "metarake")
 #' read_text_file(path, ",", 1)
 read_text_file <- function(path, delimiter, header_lines, ...){
 

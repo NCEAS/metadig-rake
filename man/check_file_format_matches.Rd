@@ -21,7 +21,7 @@ is checked against the \href{https://cn.dataone.org/cn/v2/formats}{formatId}
 in the system metadata for that file.
 }
 \examples{
-data_path <- "https://arcticdata.io/metacat/d1/mn/v2/object/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
-sys_path <- "https://arcticdata.io/metacat/d1/mn/v2/meta/urn:uuid:f4d6ffc1-9fc0-428e-ba7c-c99ff27922f3"
+data_path <- system.file("extdata/test.csv", package = "metarake")
+sys_path <- system.file("extdata/sysmeta.xml", package = "metarake")
 check_file_format_matches(data_path, sys_path)
 }

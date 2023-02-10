@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-#' path <- system.file("extdata/test.csv", package = "metadigRake")
+#' path <- system.file("extdata/test.csv", package = "metarake")
 #' check_text_file_parsable(path, ",", 1)
 check_text_file_parsable <- function(path, delimiter, header_lines){
 
