@@ -46,9 +46,9 @@
   errors <- length(which(statuses == "ERROR"))
   successes <- length(which(statuses == "SUCCESS"))
 
-  output_string <- paste(successes, "file(s) successfully parsed.",
+  output_string <- paste(successes, "file(s) successfully parsed, or are not text files.",
                        failures, "file(s) failed to parse.",
-                       errors, "files(s) errored on download, or are not text files.")
+                       errors, "files(s) errored on download.")
 
   if (any(statuses == "SUCCESS")){
       mdq_result <- list(output = output_string, status = "SUCCESS")
@@ -69,7 +69,7 @@
   </selector>
   <selector>
     <name>textFormatPresent</name>
-    <xpath>/eml/dataset/*[self::dataTable|self::otherEntity]</xpath>
+    <xpath>/eml/dataset/*[self::dataTable|self::otherEntity]/physical/dataFormat</xpath>
     <subSelector>
       <name>...</name>
       <xpath>boolean(.//textFormat)</xpath>
