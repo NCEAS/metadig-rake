@@ -34,6 +34,9 @@ check_file_format_matches <- function(data_path, sys_path){
 
   res_s <- mime::guess_type(data_path)
 
+  if (ext == "tif"){
+    ext <- "tiff" # account for different tiff extensions
+  }
 
   # get the corresponding dataone formatID from the MIME type
   formats <- dataone::listFormats(dataone::CNode("PROD"))
@@ -51,9 +54,9 @@ check_file_format_matches <- function(data_path, sys_path){
   f_format <- formats$ID[i]
 
   # check if sysmeta matches formatID
-  if (sys@formatId != f_format) {
+  if (!(sys@formatId %in% f_format)) {
     return(FALSE)
-  } else if (sys@formatId == f_format){
+  } else if (sys@formatId %in% f_format){
     return(TRUE)
   }
 
