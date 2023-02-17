@@ -38,6 +38,10 @@ data_format_congruent <- function(data_path, sys_path){
     ext <- "tiff" # account for different tiff extensions
   }
 
+  if (res_s == "application/x-netcdf"){
+    res_s <- "application/netcdf"
+  }
+
   # get the corresponding dataone formatID from the MIME type
   formats <- dataone::listFormats(dataone::CNode("PROD"))
   i <- which(formats$MediaType == res_s & formats$Extension == ext)
@@ -47,7 +51,6 @@ data_format_congruent <- function(data_path, sys_path){
   }
 
   if (length(i) == 0){
-    warning("No DataONE formats match this file.")
     return(FALSE)
   }
 
