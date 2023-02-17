@@ -31,6 +31,10 @@ get_data_pids <- function(pid, authoritative_node){
                            rows = 5000),
                  as = "data.frame")
 
+  if (nrow(res) == 0){
+    stop("Identifier not found on given authoritative node.")
+  }
+
   pids <- unlist(res$documents)
 
   return(pids)
