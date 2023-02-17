@@ -13,8 +13,8 @@
 #'
 #' @examples
 #' path <- system.file("extdata/test.csv", package = "metarake")
-#' check_text_file_parsable(path, ",", 1)
-check_text_file_parsable <- function(path, delimiter, header_lines){
+#' data_text_delimited_wellformed(path, ",", 1)
+data_text_delimited_wellformed <- function(path, delimiter, header_lines){
 
   df <- read_text_file(path, delimiter, header_lines)
 

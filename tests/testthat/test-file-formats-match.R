@@ -8,10 +8,10 @@ test_that("file formats match from path and from file", {
   ts <- tempfile()
   utils::download.file(sys_path, ts)
 
-  expect_true(check_file_format_matches(tp, ts))
+  expect_true(data_format_congruent(tp, ts))
 
   tp <- "not/a/path.csv"
-  expect_error(check_file_format_matches(tp, ts))
+  expect_error(data_format_congruent(tp, ts))
 })
 
 test_that("false is returned when formats do not match", {
@@ -27,5 +27,5 @@ test_that("false is returned when formats do not match", {
   fs <- tempfile()
   writeLines(doc, fs)
 
-  expect_false(check_file_format_matches(data_path, fs))
+  expect_false(data_format_congruent(data_path, fs))
 })

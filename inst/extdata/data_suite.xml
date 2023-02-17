@@ -4,9 +4,9 @@
   <name>Data Quality Suite</name>
   <description>This is an example Data Quality Suite.</description>
   <check>
-    <id>check.data.format.matches.formatid</id>
+    <id>data.format.congruent</id>
   </check>
   <check>
-    <id>check.text.file.format.valid</id>
+    <id>data.table-text-delimited.well-formed</id>
   </check>
 </mdq:suite>

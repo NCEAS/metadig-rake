@@ -16,8 +16,8 @@
 #' @examples
 #' data_path <- system.file("extdata/test.csv", package = "metarake")
 #' sys_path <- system.file("extdata/sysmeta.xml", package = "metarake")
-#' check_file_format_matches(data_path, sys_path)
-check_file_format_matches <- function(data_path, sys_path){
+#' data_format_congruent(data_path, sys_path)
+data_format_congruent <- function(data_path, sys_path){
 
   if (!file.exists(data_path)){
     stop("Could not find data file.")

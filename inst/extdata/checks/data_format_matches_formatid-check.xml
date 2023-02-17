@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mdq:check xmlns:mdq="https://nceas.ucsb.edu/mdqe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://nceas.ucsb.edu/mdqe ../schemas/schema1.xsd">
-  <id>check.data.format.matches.formatid</id>
-  <name>Data format matches formatId</name>
+  <id>data.format.congruent</id>
+  <name>Data format congruent with formatId</name>
   <description>Check that a data file format matches the formatId.</description>
   <type>identification</type>
   <level>REQUIRED</level>
@@ -38,7 +38,7 @@ for (i in 1:length(data_urls)){
   })
 
 
-  status <- check_file_format_matches(path_data, path_sysmeta)
+  status <- data_format_congruent(path_data, path_sysmeta)
 
   if (!status){
     result[[i]] <- list(status = "FAILURE", output = paste("The format of object", data_pids[i], "matches the formatId."))
