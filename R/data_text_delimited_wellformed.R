@@ -20,8 +20,10 @@ data_text_delimited_wellformed <- function(path, delimiter, header_lines){
 
   if (is.null(df)) {
     return(FALSE)
-  } else if (nrow(df) > 0 & inherits(df, "data.frame")){
+  } else if (nrow(df) > 0 & inherits(df, "data.frame")) {
     return(TRUE)
+  } else {
+    return(FALSE)
   }
 
 }
